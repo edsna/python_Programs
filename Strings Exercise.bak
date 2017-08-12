@@ -1,0 +1,18 @@
+#Write a python program that will prompt the user for a file name. Make sure that you have already created a file by
+#this name in the same directory as your program with several lines of text in it.  After reading in the file name from the user, 
+#create a new file with the same name, but extension .out.  Your program should to write each line of the specified input to the 
+#new output file, but all of the contents of the file should be in uppercase letters.
+
+#Prompting the user to enter the name of a file
+NameOfPets = raw_input("Enter MyPets as the file name: ")
+
+#Assigning opening MyPets and reading it to a variable called MyFile, and assigning everything inside MyFile to a variable so I can create and open a new
+#file with an extention.out and assign all the text inside MyFile to uppercase, write and print it.
+MyFile = open(NameOfPets, "r")
+s = MyFile.read()
+uppered = s.upper()
+#MyPets.close()-I should not close here right?
+SecondFile = open(NameOfPets + ".out", "w")
+UppercasedText = uppered
+SecondFile.write(UppercasedText)
+print UppercasedText

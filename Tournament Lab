@@ -1,0 +1,69 @@
+#Even and Odd - Andy and Ed
+
+HumanWinCount=0
+CompWinCount=0
+EvenDivisor=2
+EvenQuotient=0
+MaxFingers=5
+MinFingers=1
+print "Let's play Even and Odd."
+print "You'll be even. I'll be odd."
+
+totalHumanWins = 0
+totalComputerWins = 0
+
+NumGames = input("Enter the number of Games in the Tournament you would like to play: ")        
+while (NumGames%2!=1)or(NumGames<1):                                                                    #User inputs Tournament Length by number of games
+    print "Invalid Tournament Length."
+    NumGames=input("Enter the number of Games in the Tournament you would like to play: ")
+
+
+BestOfValue=input("How many Rounds do you wish to play in your Best of Games?: ")
+while (BestOfValue%2!=1)or(BestOfValue<1):                                                              #User inputs number of Rounds per Game
+    print "Invalid Number of Rounds."
+    BestOfValue=input("How many Rounds do you wish to play in your Best of Games?: ")
+    
+tournamentThreshold = NumGames/2+1
+HumanGameWinCount = 0                                                                                   #Tournament Games Win Count
+ComputerGameWinCount = 0    
+    
+while (HumanGameWinCount<tournamentThreshold) and (ComputerGameWinCount<tournamentThreshold):           #Verifies the number of Games won versus User's Tournament Length
+    import random                                                                                       
+    WinThreshold=BestOfValue/2+1
+    HumanWinCount = 0
+    CompWinCount = 0
+    while (HumanWinCount<WinThreshold)and(CompWinCount<WinThreshold):                                   #Verifies the number of Rounds won per Game 
+        ComputerNumber=random.randint(MinFingers,MaxFingers)                                            #Computer versus Human Gameplay follows:
+        HumanNumber=input("Enter the number you will throw " + str(MinFingers) + " to " + str(MaxFingers) + ": ")
+        while (HumanNumber<MinFingers)or(HumanNumber>MaxFingers):
+            print "Don't cheat."                                                                                    
+            HumanNumber=input("Play a number from " + str(MinFingers) + " to " + str(MaxFingers) + ": ")
+        Sum = HumanNumber + ComputerNumber
+        if (Sum%EvenDivisor==EvenQuotient):
+            print "I played: ", ComputerNumber
+            print "You played: ", HumanNumber
+            print "Our sum is: ", Sum
+            print "You win this round."
+            HumanWinCount=HumanWinCount+1
+            totalHumanWins = totalHumanWins + HumanWinCount
+        else:
+            print "I played: ", ComputerNumber
+            print "You played: ", HumanNumber
+            print "Our sum is: ", Sum
+            print "I win this round."
+            CompWinCount=CompWinCount+1
+            totalComputerWins = totalComputerWins + CompWinCount
+    if HumanWinCount==WinThreshold:
+        print "You win this game..."
+        HumanGameWinCount = HumanGameWinCount + 1
+    else:
+        print "I WIIIIIIIN!!!"
+        ComputerGameWinCount = ComputerGameWinCount + 1
+
+if HumanGameWinCount == tournamentThreshold:                                                            #Verifies if the Computer or Human won the Tournament
+    print "You win the Tournament Series", HumanGameWinCount, "to", ComputerGameWinCount, "!"
+else:
+    print "I win the Tournament Series", ComputerGameWinCount, "to", HumanGameWinCount, "!"
+    
+print "The Computer has won", totalComputerWins, "total rounds."                                        #Displays the total number of Rounds won for both players throughout the entire tournament
+print "You have won", totalHumanWins, "total rounds ."    

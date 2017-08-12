@@ -1,0 +1,33 @@
+#NAME: Edson Zandamela
+
+#PROGRAM DESCRIPTION
+#This program Prompts a user to input the number of Pets they have, creates an ordered list of those Pets naming each of them in order in a new file
+#and finally prints a nice list of those Pets.
+
+#Creating an empty list and prompting for the number of pets
+PetList = []
+NumOfPets = input("Enter the number of Pets you have: ")
+
+#Selecting PetNames File's range, creating on it a variable called PetList and appending or adding a user's names of Pets onto the PetList's list
+def getPetNames(PetNames):
+    global PetList
+    for Pet in range(0,PetNames):
+        NameOfPets = raw_input("Enter the name of your Pets: ")
+        PetList.append(NameOfPets)
+getPetNames(NumOfPets)
+ 
+#Saving the names of the Pets onto PetNames file and closing it.
+def SavePetNames(PetNames):
+    Names = open(PetNames, "w")
+    for item in PetList:
+        Names.write(item)
+    Names.close()
+SavePetNames ("PetNames.txt")
+
+#Calling the variable PetList and printing all of it's items
+def PrintList():
+    global PetList
+    for items in PetList:
+        print items
+
+PrintList()  

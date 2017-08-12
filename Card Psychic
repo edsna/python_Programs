@@ -1,0 +1,103 @@
+#Trinity College
+#Edson Zandamela
+#CPSC-115
+#Second Assignment(Lists and Functions)
+
+
+#This program is designed to simulate a test that will determine if a person is or not card psychic
+#based on their ability to guess cards in a computer's tester's hand
+
+
+#Creating global variables deck-holds the deck of cards and hand-holds the cards that must be guessed
+import random
+deck = []
+hand = []
+
+#The following function prompts the user to enter the name and format (.txt) of the file containing the deck of cards to be drawn b the user
+def getDeckName():
+  FileName = raw_input("Enter the name of the file containing the deck of cards: ")
+  while FileName[-4:]!= ".txt":
+    FileName = raw_input("Please, Enter the name of the file containing the deck of cards: ")
+  return FileName
+
+#The function bellow opens the file entered by the user, reads it's content and assigns it to deck
+def getDeck(FileName):
+  Information = open(FileName, "r+")
+  for line in Information:
+    line = line.rstrip()
+    deck.append(line)
+
+#The function bellow tests if the program outputs the right content when they are called
+def showForTest(ShowTest):
+  if ShowTest ==0:
+    print "deck has: ", deck
+  elif ShowTest ==1:
+    print "deck has: ", deck
+    print "And"
+    print "hand has: ", hand
+  else:
+    print "Error!! Enter either 0 or 1. "
+
+#The function bellow prompts a user to enter a value in a correct range of values then returns it
+def getValidNumber(Value, Least,Highest):
+    Age = input(Value)
+    while Age < Least or Age > Highest:
+        print "Error!! Please enter a value between " , Least , " and " , Highest
+        Age = input(Value)
+    return Age
+
+#The funtion bellow os responsible for prompting the number of cards to be drawn from deck
+def chooseCards(NumOfCards):
+    global hand
+    for var in range(0,NumOfCards):
+        A = deck.pop(random.randint(0,len(deck)-1))
+        hand.append(A)
+
+#The function bellow assures that the user enters  valid guess of cards in deck
+def getGuess():
+    global deck
+    global hand
+    CardSelected = raw_input("Enter a valid card value: ")
+    while (CardSelected not in deck) and (CardSelected not in hand):
+        CardSelected = raw_input("Enter a valid guess: ")
+    return CardSelected
+
+
+#This function keeps track of the user's trials to guess cards on hand
+def runTest(MaxGuess):
+    Guess = 0
+    global hand
+    while (Guess < MaxGuess) and (len(hand)!=0):
+        kard = getGuess()
+        if kard in hand:
+            hand.remove(kard)
+            print "Card is in the hand! "
+        else:
+            print "Card is not in hand! "
+        Guess = Guess+1
+
+#This function determines and outputs the user's psychic ability
+def showResult():
+    #global hand
+    global Age
+    if len(hand)!=0:
+        print "Here are the remaining cards in hand: ", hand
+    hand2=hand
+    if len(hand2)==0:
+        print hand2, "Hand is empty,"
+        print "You guessed all the cards,"
+        print "You're definitely card Psychic!"
+    elif ((len(hand2)*1.0/float(Age))) <= 0.3:
+        print "You're Possibly Card Psychic "
+    else:
+        print "You're not a card Psychic!"
+        
+#The following call the functions orderly
+Age = getValidNumber("How many cards would you like to draw from the deck: ", 3,52)
+Guesses=getValidNumber("How many guesses would you like to make: ", Age,52)
+getDeck(getDeckName())
+showForTest(0)
+chooseCards(Age)
+showForTest(1)
+runTest(Guesses)
+showResult()

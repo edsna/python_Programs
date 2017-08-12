@@ -1,0 +1,130 @@
+#Tea Time Dance Studio,
+#Edson Zandamela
+
+#Synopses
+#This program is to help the Tea Time Dance Studio calculate weekly checks for their dance instructors
+
+#VARIABLES
+FloorRentalFee = 10.00
+FlatFee = 20.00
+GoldAndSilverHourPerWeek = 40
+GoldFreePerHour = 7.00
+SilverFreeHour = 6.00
+B = -1
+StdJoinGroupLesson = 0.1
+GoldInstructrPriv = 0.3
+SilverInstructrPriv = 0.2
+
+#COST OF LESSONS
+PrivateLessons = 60
+GroupLessons = 10
+
+#JOINING GROUP LESSON
+StdFromPrivateGroup = 6
+StdFromGroup = 1
+
+#EXTRAS TEACHING PRIVATE LESSONS
+GoldPrivateLesson = 18
+SilverPrivateLesson = 12
+RenterPrivateLesson = 50
+
+#TYPES OPF DANCE INTRUCTORS
+Goldemp = "Gold"
+Silveremp = "Silver"
+Renteremp = "Renter"
+#Counting initialization
+NumPrivLessTaught = 0
+NumGroupLessTaught = 0
+TotalStudioCollected = 0
+TotalExpenses = 0
+
+#The following is a set of inputs, formulas and outputs
+
+
+Code = input("Enter a three digits instructor's code here:")
+while Code !=B:
+        
+    while Code!=B:
+        
+            
+        if Code <100 or Code >999 :
+            print "Enter a correct code!" 
+            Code = input("Enter a three digits instructor's code here:")
+        else:
+            
+                
+            
+            if Code%10 == 1:
+                    InstrucName = raw_input("Enter the instructor name:")
+                    NumPrivLessTaught = input("Enter amount of private lessons taught:")
+                    NumGroupLessTaught = input("Enter amount of group lessons taught:")
+                    NumGroupLessStdTook = input("Enter amount of group lessons instructor students took:")
+                    print "Name of instructor:", InstrucName
+                    print "Instructor Code:", Code
+                    print "Type of instructor:", Goldemp
+                    print "Private lessons taught:", NumPrivLessTaught
+                    print "Total paid to the studio for private lessons is : $", NumPrivLessTaught*PrivateLessons
+                    print "Instructor's income for private lessons is: $", GoldInstructrPriv*NumPrivLessTaught*PrivateLessons
+                    InstIncomPrivLess = GoldInstructrPriv*NumPrivLessTaught*PrivateLessons
+                    print "Number of group classes taught:", NumGroupLessTaught
+                    print "Income teaching group classes is: $", NumGroupLessTaught*FlatFee
+                    IncTeachGrpClss= NumGroupLessTaught*FlatFee
+                    print "Number of group lessons instructor's students took is:", NumGroupLessStdTook
+                    print "Amount paid to the studio for the group classes is: $", NumGroupLessStdTook*GroupLessons
+                    print "Instructor's income for group lessons is: $", (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson
+                    InstrIncForGropLess = (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson
+                    print "instructor had", GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught), "hours free this week"
+                    print "Payment for free hours is: $", (GoldFreePerHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+                    print "Total in lesson fees the studio collected is:", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)
+                    print "Total money paid to instructor is:", InstIncomPrivLess+IncTeachGrpClss+InstrIncForGropLess+(GoldFreePerHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+                    
+            elif Code%10 ==2:
+                    InstrucName = raw_input("Enter the instructor name:")
+                    NumPrivLessTaught = input("Enter amount of private lessons taught:")
+                    NumGroupLessTaught = input("Enter amount of group lessons taught:")
+                    NumGroupLessStdTook = input("Enter amount of group lessons instructor students took:")
+                    print "Name of instructor:", InstrucName
+                    print "Instructor Code:", Code
+                    print "Type of instructor:", Silveremp
+                    print "Private lessons taught:", NumPrivLessTaught
+                    print "Total paid to the studio for private lessons is : $", NumPrivLessTaught*PrivateLessons
+                    print "Instructor income for private lessons is: $", 
+                    InsIncPvt =SilverInstructrPriv*NumPrivLessTaught*PrivateLessons
+                    print "Number of group classes taught:", NumGroupLessTaught
+                    print "Income teaching group classes is: $", NumGroupLessTaught*FlatFee
+                    IncTechGCls = NumGroupLessTaught*FlatFee
+                    print "Number of group lessons students took is:", NumGroupLessStdTook
+                    print "Amount paid to the studio for the group classes is: $", NumGroupLessStdTook*GroupLessons
+                    print "Instructor's income for group lessons is: $", (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson
+                    IncGpLss = (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson
+                    print "instructor had", GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught), "hours free this week"
+                    print "Payment for free hours is: $", (SilverFreeHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+                    print "Total in lesson fees paid to the studio is:", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)
+                    #print "Payment of instructor is: $", (GoldInstructrPriv*NumPrivLessTaught)+((NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson)+( FlatFee* (GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught)))
+                    print "Total money Studio collected from all private and group lessons is: $", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)
+                    print "Total money paid to instructors is:", InsIncPvt+IncTechGCls+IncGpLss+(SilverFreeHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+                 
+                
+            else:
+                    InstrucName = raw_input("Enter the instructor name:")
+                    NumPrivLessTaught = input("Enter amount of private lessons taught:")
+                    NumGroupLessStdTook = input("Enter amount of group lessons instructor students took:")
+                    print "Name of instructor:", InstrucName
+                    print "Instructor Code:", Code
+                    print "Type of instructor:", Renteremp
+                    print "Private lessons taught:", NumPrivLessTaught
+                    print "Total paid to the studio for private lessons is : $", NumPrivLessTaught*PrivateLessons
+                    print "Instructor income for private lessons is: $", NumPrivLessTaught*RenterPrivateLesson
+                    print "Number of group lessons students took is:", NumGroupLessStdTook
+                    print "Amount paid to the studio for the group classes is: $", NumGroupLessStdTook*GroupLessons
+                    print "Instructor's income for group lessons is: $", (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson
+                    print "Total in lesson fees paid to the studio is:", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)
+                    print "Payment of instructor is: $", (NumGroupLessStdTook*GroupLessons)*StdJoinGroupLesson+NumPrivLessTaught*RenterPrivateLesson
+                   
+            
+            Code = input("Enter a three digits instructor's code here:")
+         
+print "Total money Studio collected for all private and group lessons from instructirs is: $", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)
+print "Total amount of money paid out to all instructors is:", InstIncomPrivLess+IncTeachGrpClss+InstrIncForGropLess+(GoldFreePerHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+print "Studio profit is:", (NumPrivLessTaught*PrivateLessons)+(NumGroupLessStdTook*GroupLessons)-InstIncomPrivLess+IncTeachGrpClss+InstrIncForGropLess+(GoldFreePerHour)*(GoldAndSilverHourPerWeek-(NumPrivLessTaught+NumGroupLessTaught))
+print "Enter a valid Selection"

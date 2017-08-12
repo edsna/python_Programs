@@ -1,0 +1,54 @@
+
+
+Permission=300.00
+OneVan=50.00
+
+Chil3AndUp = input('Enter number of children three and older: ')
+
+# Adults 3 and up are the amount of adults needed for however many children are 3 and older
+if (Chil3AndUp %3)==0:
+    Adul3AndUp = Chil3AndUp / 3
+else:
+    Adul3AndUp = (Chil3AndUp / 3) +1
+
+Chil3AndDown = input('Enter number of children three and younger: ')
+
+# Adults 3 and down are how many adults will be needed for however many children are 3 and younger
+if (Chil3AndDown %2)==0:
+    Adul3AndDown = Chil3AndDown / 2
+else:
+    Adul3AndDown = (Chil3AndDown / 2) +1
+
+TotalNumChil = Chil3AndUp + Chil3AndDown
+
+TotalNumAdul = Adul3AndUp + Adul3AndDown
+print 'The number of adults needed is' , TotalNumAdul
+
+# assuming all adults are over 12, each adult's admission is $8
+AdmissionForAdul = TotalNumAdul * 8.00
+
+# No child is over 6 years old, therefore each child's admission is $5
+AdmissionForChil = TotalNumChil * 5.00
+
+TotalAdmissionCost = AdmissionForAdul + AdmissionForChil
+print 'Total admission cost for children and adults is $ %.2f' % TotalAdmissionCost
+
+TotalNumPeople = TotalNumAdul + TotalNumChil
+
+# vans can only hold 12 people per van
+if TotalNumPeople %12==0:
+    NumVans = TotalNumPeople / 12
+else:
+    NumVans = (TotalNumPeople / 12) +1
+print 'Number of vans needed is' ,NumVans
+
+# the cost of one van multiplied by the number of vans needed equals the total cost of the vans
+CostOfVans = OneVan * NumVans
+print 'The vans will cost%.2f' % CostOfVans
+
+TotalCost = TotalAdmissionCost
+print 'The total cost of the outing is%.2f' % TotalCost
+
+# No permission if over $300
+if TotalCost < Permission:
+    print 'This trip does not needs permission permission'

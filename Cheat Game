@@ -1,0 +1,41 @@
+bestOf = input("How many games would you like to play:")
+while bestOf%2==0 or bestOf < 0:
+    print"Please give an odd, positive number."
+    bestOf = input("How many games would you like to play:")
+
+compWins = 0
+playerWins = 0
+
+import random
+
+while playerWins < (bestOf+1)/2 and compWins < (bestOf+1)/2:
+    compThrow = random.randint(1,5)
+    playerThrow = input("Enter your throw, between one and five:")
+    if  playerThrow%2>0 and compThrow == 5 : 
+        compThrow = compThrow - 1
+    if  playerThrow%2>0 and compThrow%2>0:
+        compThrow = compThrow+1
+    if playerThrow%2==0 and compThrow%2==0:
+        compThrow = compThrow + 1
+        
+    while playerThrow < 0 or playerThrow > 6:
+        print "Please enter a value between one and five."
+        playerThrow = input("Enter your throw, between one and five:")
+  
+    sum = compThrow + playerThrow
+    if sum%2==0:
+        print"You Win This Game!"
+        print "Computer threw a", compThrow
+        playerWins = playerWins+1
+    else: 
+        print"You Lose This Game!"
+        print "Computer threw a", compThrow
+        compWins = compWins + 1
+    
+
+if playerWins == (bestOf+1)/2:
+    print"You Win The Series!"
+    print "Computer threw a", compThrow
+if compWins == (bestOf+1)/2: 
+    print"You Lose The Series!"
+    print "Computer threw a", compThrow

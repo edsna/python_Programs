@@ -1,0 +1,42 @@
+#Even and Odd
+
+HumanWinCount=0
+CompWinCount=0
+EvenDivisor=2
+EvenQuotient=0
+MaxFingers=5
+MinFingers=1
+print "Let's play Even and Odd."
+print "You'll be even. I'll be odd."
+
+BestOfValue=input("You want to play a Best of: ")
+while (BestOfValue%2!=1)or(BestOfValue<1):
+    print "Invalid Best of Count."
+    BestOfValue=input("You want to play a Best of: ")
+import random
+WinThreshold=BestOfValue/2+1
+HumanWinCount = 0
+CompWinCount = 0
+while (HumanWinCount<WinThreshold)and(CompWinCount<WinThreshold):
+    ComputerNumber=random.randint(MinFingers,MaxFingers)
+    HumanNumber=input("Enter the number you will throw " + str(MinFingers) + " to " + str(MaxFingers) + ": ")
+    while (HumanNumber<MinFingers)or(HumanNumber>MaxFingers):
+        print "Don't cheat."
+        HumanNumber=input("Play a number from " + str(MinFingers) + " to " + str(MaxFingers) + ": ")
+    Sum = HumanNumber + ComputerNumber
+    if (Sum%EvenDivisor==EvenQuotient):
+        print "I played: ", ComputerNumber
+        print "You played: ", HumanNumber
+        print "Our sum is: ", Sum
+        print "You win this round."
+        HumanWinCount=HumanWinCount+1
+    else:
+        print "I played: ", ComputerNumber
+        print "You played: ", HumanNumber
+        print "Our sum is: ", Sum
+        print "I win this round."
+        CompWinCount=CompWinCount+1
+if HumanWinCount==WinThreshold:
+    print "You win this game..."
+else:
+    print "I WIIIIIIIN!!!"

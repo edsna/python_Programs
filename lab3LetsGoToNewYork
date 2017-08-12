@@ -1,0 +1,67 @@
+# Lab 3 Let's Go To New York Tours
+# Elizabeth Ho and Edson Zandamela
+# This program calculates cost and profits for a bus company
+
+# initialize variables
+cruisingCoach = 450.00
+deluxeCoach = 550.00
+partyCoach = 625.00
+cruisingProfit = 150.00
+deluxeProfit = 150.00
+partyProfit = 275.00
+numPeople = input("Enter number of people: ")
+peoplePerBus = 50
+numBus = numPeople/peoplePerBus 
+typeofBus = raw_input("Enter C for cruising, D for deluxe, or P for party: ")
+
+if numPeople%peoplePerBus > 0:
+    numBus = numBus + 1
+
+print "Number of buses: ", numBus 
+cruisingCost = cruisingCoach*numBus
+deluxeCost = deluxeCoach*numBus
+partyCost = partyCoach*numBus
+
+# Cost for Users and Company
+if (typeofBus == "C") or (typeofBus == "c"):
+    print "customer cost: ", cruisingCost
+    print "company cost: ", (cruisingCoach-cruisingProfit)*numBus
+elif (typeofBus == "D") or (typeofBus == "d"):
+    print "customer cost: ", deluxeCost
+    print "company cost: ", (deluxeCoach-deluxeProfit)*numBus
+elif (typeofBus == "P") or (typeofBus == "p"):
+    print "customer cost: ", partyCost
+    print "company cost: ", (partyCoach-partyProfit)*numBus
+else:
+    print "invalid selection entered"
+
+# Profit for Company
+if (typeofBus == "C") or (typeofBus == "c"):
+    print "company profit: ", (numBus*cruisingProfit)
+elif (typeofBus == "D") or (typeofBus == "d"):
+    print "company profit: ", (numBus*deluxeProfit)
+elif (typeofBus == "P") or (typeofBus == "p"):
+    print "company profit: ", (numBus*partyProfit)
+else:
+    print "invalid selection entered"
+    
+    
+
+# 10% discount if cost exceeds $1000
+if cruisingCost >= 1000:
+    cruisingDiscount = cruisingCost*.10
+    print "Customer discount: ", cruisingDiscount
+    discountCost = cruisingCost-cruisingDiscount
+    print "Total Customer Cost: ", discountCost
+    print "company profit: ", ((numBus*cruisingProfit)-cruisingDiscount)
+elif deluxeCost >= 1000:
+    deluxeDiscount = deluxeCost*.10
+    print "customer discount: ", deluxeDiscount
+    print "total customer cost: ", deluxeCost-deluxeDiscount
+    print "company profit: ", (numBus*deluxeProfit)-deluxeDiscount
+
+elif partyCost >= 1000:
+    partyDiscount = partyCost*.10
+    print "customer discount: ", partyDiscount
+    print "total customer cost: ", partyCost-partyDiscount
+    print "company profit: ", (numBus*partyProfit)-partyDiscount
